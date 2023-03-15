@@ -31,6 +31,6 @@ import { counterFactory } from './shared/services/counter.factory';
     TestService,
     { provide: 'appTitle', useValue: {title: 'this is title', description: 'this is the title description'} }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
