@@ -10,7 +10,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './public-components/home/home.component';
 import { CounterService } from './shared/services/counter.service';
 import { Counter2Service } from './shared/services/counter2.service';
-import { TestService } from './shared/services/test.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +24,7 @@ import { TestService } from './shared/services/test.service';
     AppRoutingModule,
     BrowserAnimationsModule
   ],
-  providers: [{ provide: CounterService, useClass: Counter2Service }, TestService],
+  providers: [{ provide: Counter2Service, useExisting: CounterService }, CounterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
