@@ -7,6 +7,15 @@ import { Component, Input } from '@angular/core';
 })
 
 export class AuthorsComponent {
-  @Input() data: number;
+  @Input()
+  get data(){
+    return this._data;
+  }
+
+  set data(value: number){
+    this._data = ++value;
+  }
+
+  private _data: number;
   @Input() showAuthors: boolean;
 }
