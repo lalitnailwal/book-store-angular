@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-authors',
@@ -7,15 +7,11 @@ import { Component, Input } from '@angular/core';
 })
 
 export class AuthorsComponent {
-  @Input()
-  get data(){
-    return this._data;
-  }
 
-  set data(value: number){
-    this._data = ++value;
-  }
 
-  private _data: number;
-  @Input() showAuthors: boolean;
+  public data: number;
+
+  public setData(value: number): void{
+    this.data= value;
+  }
 }
