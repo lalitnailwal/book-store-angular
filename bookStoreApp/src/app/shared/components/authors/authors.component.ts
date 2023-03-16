@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 
 export class AuthorsComponent {
 
+  constructor() { }
 
   public data: number;
 
