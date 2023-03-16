@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { TestService } from '../../services/test.service';
 
 @Component({
   selector: 'app-authors',
@@ -8,9 +9,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
 
 export class AuthorsComponent {
 
-  constructor() { }
+  constructor(private _testService: TestService) { }
 
-  @Output() myData = new EventEmitter<string>();
   public data: number;
 
   public setData(value: number): void{
@@ -18,6 +18,7 @@ export class AuthorsComponent {
   }
 
   public btnClick(): void{
-    this.myData.emit('This text is from child component');
+    //this.myData.emit('This text is from child component');
+    this._testService.myData = 'This text is from child component';
   }
 }
