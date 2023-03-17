@@ -13,9 +13,13 @@ export class AuthorsComponent implements OnInit, OnChanges {
   @Input() data: number;
   @Input() data2: boolean;
 
-  constructor() { }
+  constructor() {
+    console.log('Hello from Child constructor');
+  }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    console.log('Hello from Child ngOn init');
+  }
 
 
   ngOnChanges(changes: SimpleChanges): void {
