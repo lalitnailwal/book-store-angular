@@ -1,5 +1,5 @@
 import { InputModalityDetector } from '@angular/cdk/a11y';
-import { AfterContentChecked, AfterContentInit, Component, ContentChild, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, Component, ContentChild, DoCheck, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { AuthorModel } from '../../models/authors.model';
 import { TestService } from '../../services/test.service';
 import { AuthorsAddressComponent } from '../authors-address/authors-address.component';
@@ -10,7 +10,7 @@ import { AuthorsAddressComponent } from '../authors-address/authors-address.comp
   styleUrls: ['./authors.component.scss']
 })
 
-export class AuthorsComponent implements OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked {
+export class AuthorsComponent implements OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked, OnDestroy {
 
   @ContentChild(AuthorsAddressComponent) authAddress: AuthorsAddressComponent;
   @Input() data: number;
@@ -21,6 +21,10 @@ export class AuthorsComponent implements OnInit, OnChanges, DoCheck, AfterConten
 
   constructor() {
     console.log('Hello from Child constructor');
+  }
+
+  ngOnDestroy(): void {
+    console.log('Authors component destroy');
   }
 
   ngAfterContentInit(): void {

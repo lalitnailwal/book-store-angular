@@ -1,4 +1,4 @@
-import { AfterViewChecked, AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild, OnDestroy} from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { AuthorsComponent } from 'src/app/shared/components/authors/authors.component';
 import { AuthorModel } from 'src/app/shared/models/authors.model';
@@ -10,7 +10,7 @@ import { TestService } from 'src/app/shared/services/test.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, AfterViewInit, AfterViewChecked {
+export class HomeComponent implements OnInit, AfterViewInit, AfterViewChecked, OnDestroy {
 
   @ViewChild('btnCounter') btnCounter: ElementRef;
   @ViewChild(AuthorsComponent) authComponent: AuthorsComponent;
@@ -18,13 +18,19 @@ export class HomeComponent implements OnInit, AfterViewInit, AfterViewChecked {
   public test: boolean = false;
   public address: string = 'India';
   public obj: AuthorModel = { id: 10, name: 'nitish' }
+  private time: any;
 
   constructor(public _testService: TestService) {
-    console.log('Hello from Parent constructor');
+    //console.log('Hello from Parent constructor');
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.time);
+    console.log('Home component destroy');
   }
 
   ngAfterViewChecked(): void {
-    console.log(this.authComponent.childCounter);
+    //console.log(this.authComponent.childCounter);
   }
 
   ngAfterViewInit(): void {
@@ -34,6 +40,7 @@ export class HomeComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
   ngOnInit(): void {
     console.log('Hello from Parent ngOn init');
+    this.timer();
   }
 
   public counter(): void {
@@ -41,5 +48,12 @@ export class HomeComponent implements OnInit, AfterViewInit, AfterViewChecked {
     this.test = !this.test;
     this.obj.id = this.count++;
     this.address = this.address + this.count;
+  }
+
+  timer(): void {
+    this.time = setInterval(() => {
+      this.count++;
+      console.log(this.count);
+    }, 1000)
   }
 }
