@@ -1,5 +1,7 @@
 <h2>{{pageTitle}}</h2>
 
+<button mat-raised-button color="primary" [routerLink]="'new'">Add New Book</button>
+
 <div class="container">
   <mat-card class="book-card" *ngFor="let book of books">
     <mat-card-header>
