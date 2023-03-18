@@ -10,8 +10,9 @@ import { TestService } from 'src/app/shared/services/test.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
 
+  @ViewChild('btnCounter') btnCounter: ElementRef;
   public count: number = 0;
   public test: boolean = false;
   public address: string = 'India';
@@ -19,6 +20,11 @@ export class HomeComponent implements OnInit {
 
   constructor(public _testService: TestService) {
     console.log('Hello from Parent constructor');
+  }
+
+  ngAfterViewInit(): void {
+    console.log(this.btnCounter);
+    this.btnCounter.nativeElement.innerHTML = 'Button text updated';
   }
 
   ngOnInit(): void {
