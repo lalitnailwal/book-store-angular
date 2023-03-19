@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BookService } from '../../services/book.service';
 
 @Component({
@@ -41,6 +41,10 @@ export class AddBookReactiveComponent implements OnInit {
     })
   }
 
+  public get authors() {
+    return <FormArray>this.addBookForm.get('authors');
+  }
+
   updateFormValues(): void {
     this.addBookForm.patchValue({
       title: 'nitish kaushik',
@@ -61,7 +65,7 @@ export class AddBookReactiveComponent implements OnInit {
   private initForm(): void {
     this.addBookForm = this._formBuilder.group({
       title: ['this is default', [Validators.required, Validators.minLength(10)]],
-      author: '',
+      //author: '',
       totalPages: '',
       price: this._formBuilder.group({
         currency: '',
@@ -71,7 +75,14 @@ export class AddBookReactiveComponent implements OnInit {
       isPublished: '',
       formatType: '',
       pdfFormat: '',
-      docFormat: ''
+      docFormat: '',
+      authors: this._formBuilder.array([this.getAuthorControl(), this.getAuthorControl()])
+    });
+  }
+
+  private getAuthorControl(): FormGroup {
+    return this._formBuilder.group({
+      fullName: ''
     });
   }
 
