@@ -6,20 +6,23 @@ import { BooksRoutingModule } from './books-routing.module';
 import { BooksComponent } from './books.component';
 import { SharedModule } from '../shared/shared.module';
 import { AddBookComponent } from './components/add-book/add-book.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddBookReactiveComponent } from './components/add-book-reactive/add-book-reactive.component';
 
 @NgModule({
   declarations: [
     AllBooksComponent,
     BookDetailsComponent,
     BooksComponent,
-    AddBookComponent
+    AddBookComponent,
+    AddBookReactiveComponent
   ],
   imports: [
     CommonModule,
     BooksRoutingModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class BooksModule { }
